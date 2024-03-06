@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import scrolledtext
 
 from modules.data import castDataFrame
 from modules.button import castButtonFrame
@@ -30,6 +31,7 @@ left_frame.pack(side=LEFT, fill=BOTH, expand=True)
 
 left_top_data = Frame(left_frame, bg=colors.WHITE)
 left_top_data.pack(side=TOP, fill=BOTH, expand=True)
+left_top_data.pack_propagate(False)
 
 data_top = Frame(left_top_data, bg=colors.LIGHT, height=60)
 data_top.pack(side=TOP, fill=X)
@@ -47,6 +49,7 @@ castDataFrame(data_frame)
 
 left_top_button = Frame(left_frame, bg=colors.WHITE)
 left_top_button.pack(side=TOP, fill=BOTH, expand=True, pady=10)
+left_top_button.pack_propagate(False)
 
 comandos_top = Frame(left_top_button, bg=colors.LIGHT, height=60)
 comandos_top.pack(side=TOP, fill=X)
@@ -75,18 +78,31 @@ middle_frame.pack(side=LEFT, fill=Y)
 right_frame = Frame(main_frame, bg=colors.WHITE)
 right_frame.pack(side=LEFT, fill=BOTH, expand=True)
 
-labels_frame = Frame(right_frame, bg=colors.LIGHT, height=60)
+upper_frame = Frame(right_frame, bg="red", height=25)
+upper_frame.pack(side=TOP, fill=X)
+
+labels_frame = Frame(upper_frame, bg=colors.LIGHT, height=25)
 labels_frame.pack(side=TOP, fill=X)
 
 cromosoma_label = Label(labels_frame, text="Cromosoma", bg=colors.LIGHT)
-cromosoma_label.pack(side=LEFT, fill=Y, expand=True)
+cromosoma_label.pack(side=LEFT, fill=X, expand=True)
+
+lower_frame = Frame(right_frame, bg="blue")
+lower_frame.pack(side=TOP, fill=BOTH, expand=True)
+lower_frame.pack_propagate(False)
+
+cromosoma = scrolledtext.ScrolledText(lower_frame, width=53)
+cromosoma.pack(side=LEFT, fill=BOTH, expand=True)
 
 # -------------Fitness Frame-----------------
 
 fitness_label = Label(labels_frame, text="F", bg=colors.DARK, width=6)
 fitness_label.pack(side=RIGHT, fill=Y)
 
-fitness_frame = Frame(right_frame, bg=colors.LIGHT, width=48)
-fitness_frame.pack(side=RIGHT, fill=Y)
+fitness_frame = Frame(lower_frame, bg=colors.LIGHT, width=48)
+fitness_frame.pack(side=LEFT, fill=Y)
+
+fitness = scrolledtext.ScrolledText(fitness_frame, width=48)
+fitness.pack(side=LEFT, fill=Y)
 
 root.mainloop()
