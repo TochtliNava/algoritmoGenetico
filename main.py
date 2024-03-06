@@ -1,6 +1,7 @@
 from tkinter import *
 
 from modules.data import castDataFrame
+from modules.button import castButtonFrame
 from res.values import colors
 
 root = Tk()
@@ -56,6 +57,8 @@ comandos_label.pack()
 buttons_frame = Frame(left_top_button, bg=colors.WHITE)
 buttons_frame.pack(side=TOP, fill=BOTH, expand=True)
 buttons_frame.pack_propagate(False)
+
+castButtonFrame(buttons_frame, root)
 
 # --------Filler Frame----------------
 
