@@ -4,6 +4,10 @@ from res.values import colors
 
 def castDataFrame(root_frame):
 
+    global size
+    global quantity
+    global gen
+
     size_frame = Frame(root_frame, bg=colors.WHITE)
     size_frame.pack(side=TOP, fill=BOTH, padx=5, expand=True)
 
@@ -35,3 +39,12 @@ def castDataFrame(root_frame):
 
     gen = Entry(gen_frame, justify=RIGHT, bg=colors.WHITE)
     gen.pack(side=LEFT, fill=X, expand=True)
+
+def getSizeWidget():
+        return size
+
+def getQuantityWidget():
+        return quantity
+
+def getGenWidget():
+        return gen

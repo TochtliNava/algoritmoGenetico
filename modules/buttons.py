@@ -1,15 +1,17 @@
 from tkinter import *
 
+from modules.generate import generar
+
 from res.values import colors
 
-def castButtonFrame(root, main):
+def castButtonFrame(root, main, cromosoma):
 
     # -----------------------------------
 
     upper_row = Frame(root, bg=colors.WHITE)
     upper_row.pack(side=TOP, fill=X, expand=True)
 
-    button_start = Button(upper_row, text="Generar", font=("Arial", 12))
+    button_start = Button(upper_row, text="Generar", font=("Arial", 12), command=lambda:generar(cromosoma))
     button_start.pack(side=LEFT, expand=True, padx=2)
 
     button_breed = Button(upper_row, text="Cruce", font=("Arial", 12))

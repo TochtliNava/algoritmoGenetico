@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import scrolledtext
 
-from modules.data import castDataFrame
-from modules.button import castButtonFrame
+from modules.inputs import castDataFrame
+from modules.buttons import castButtonFrame
 from res.values import colors
 
 root = Tk()
@@ -61,7 +61,7 @@ buttons_frame = Frame(left_top_button, bg=colors.WHITE)
 buttons_frame.pack(side=TOP, fill=BOTH, expand=True)
 buttons_frame.pack_propagate(False)
 
-castButtonFrame(buttons_frame, root)
+
 
 # --------Filler Frame----------------
 
@@ -104,5 +104,7 @@ fitness_frame.pack(side=LEFT, fill=Y)
 
 fitness = scrolledtext.ScrolledText(fitness_frame, width=48)
 fitness.pack(side=LEFT, fill=Y)
+
+castButtonFrame(buttons_frame, root, cromosoma)
 
 root.mainloop()
