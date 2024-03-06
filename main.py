@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import scrolledtext
 
 from modules.inputs import castDataFrame
-from modules.buttons import castButtonFrame
+from modules.actions import castButtonFrame
 from res.values import colors
 
 root = Tk()
