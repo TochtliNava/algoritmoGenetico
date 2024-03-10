@@ -1,6 +1,7 @@
 from tkinter import *
 
 from res.values import colors
+from modules.cromosoma import cromosoma
 from modules.generate import Generate
 
 class Engine:
@@ -10,7 +11,7 @@ class Engine:
         self.upper_row = Frame(root, bg=colors.WHITE)
         self.upper_row.pack(side=TOP, fill=X, expand=True)
 
-        self.button_start = Button(self.upper_row, text="Generar", font=("Arial", 12), command=lambda:Generate(self.frame, self.capture))
+        self.button_start = Button(self.upper_row, text="Generar", font=("Arial", 12), command=self.start)
         self.button_start.pack(side=LEFT, expand=True, padx=2)
 
         self.button_breed = Button(self.upper_row, text="Cruce", font=("Arial", 12))
@@ -38,3 +39,11 @@ class Engine:
     
     def setCapture(self, capture):
         self.capture = capture
+
+    def start(self):
+        Generate(self.frame, self.capture)
+        if(cromosoma.getLength()%2 == 1):
+            print("true")
+            self.button_breed["state"] = "disable"
+        if(cromosoma.getLength()%2 == 0):
+            self.button_breed["state"] = "active"

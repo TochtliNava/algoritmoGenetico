@@ -7,6 +7,7 @@ def Generate(render, capture):
 
     cromosoma.clearCromosomas()
     cromosoma.clearFitness()
+    cromosoma.setLength(capture.getSize())
 
     render.delete(1.0, END)
 
@@ -20,4 +21,3 @@ def Generate(render, capture):
         render.insert(INSERT, "\n")
         cromosoma.addFitness(temp_cromosoma)
         cromosoma.addCromosoma(temp_cromosoma)
-

@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import scrolledtext
 
 from modules.capture import Capture
-from modules.render import Engine
+from modules.engine import Engine
 from res.values import colors
 
 root = Tk()
