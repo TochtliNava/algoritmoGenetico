@@ -1,5 +1,3 @@
-global cromosoma
-
 class Cromosoma:
 
     def __init__(self):
@@ -46,5 +44,19 @@ class Cromosoma:
     
     def __str__(self) -> str:
         return f"{self.cromosomas}"
+
+    def mutate(self):
+        self.clearFitness()
+        
+        for i in range(self.getSize()):
+            temp_cromosoma = ""
+            for u in range(len(self.cromosomas[i])):
+                if(self.cromosomas[i][u] == "1"):
+                    temp_cromosoma = temp_cromosoma + "0"
+                if(self.cromosomas[i][u] == "0"):
+                    temp_cromosoma = temp_cromosoma + "1"
+            self.cromosomas[i] = temp_cromosoma
+            self.addFitness(self.cromosomas[i])
+
 
 cromosoma = Cromosoma()
