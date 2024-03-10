@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import scrolledtext
 
-from modules.inputs import castDataFrame
-from modules.actions import castButtonFrame
+from modules.capture import Capture
+from modules.render import Engine
 from res.values import colors
 
 root = Tk()
@@ -43,7 +43,7 @@ data_frame = Frame(left_top_data, bg=colors.WHITE)
 data_frame.pack(side=TOP, fill=BOTH, expand=True)
 data_frame.pack_propagate(False)
 
-castDataFrame(data_frame)
+capture = Capture(data_frame)
 
 # -------Buttons Frame------------
 
@@ -94,17 +94,8 @@ lower_frame.pack_propagate(False)
 cromosoma = scrolledtext.ScrolledText(lower_frame, width=53)
 cromosoma.pack(side=LEFT, fill=BOTH, expand=True)
 
-# -------------Fitness Frame-----------------
-
-fitness_label = Label(labels_frame, text="F", bg=colors.DARK, width=6)
-fitness_label.pack(side=RIGHT, fill=Y)
-
-fitness_frame = Frame(lower_frame, bg=colors.LIGHT, width=48)
-fitness_frame.pack(side=LEFT, fill=Y)
-
-fitness = scrolledtext.ScrolledText(fitness_frame, width=48)
-fitness.pack(side=LEFT, fill=Y)
-
-castButtonFrame(buttons_frame, root, cromosoma)
+engine = Engine(buttons_frame)
+engine.setRenderFrame(cromosoma)
+engine.setCapture(capture)
 
 root.mainloop()

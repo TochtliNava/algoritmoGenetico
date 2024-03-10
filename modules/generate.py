@@ -1,20 +1,23 @@
 from tkinter import *
 import random
 
-from modules.getInputs import getSize, getQuantity, getGen
-from modules.cromosomas import clearCromosomas
+from modules.cromosoma import cromosoma
 
-def generar(frame):
+def Generate(render, capture):
 
-    clearCromosomas()
+    cromosoma.clearCromosomas()
+    cromosoma.clearFitness()
 
-    frame.delete(1.0, END)
+    render.delete(1.0, END)
 
-    for _ in range(getQuantity()):
+    for x in range(int(capture.getQuantity())):
         temp_cromosoma = ""
 
-        for _ in range(getSize()):
+        for _ in range(int(capture.getSize())):
             temp_cromosoma = temp_cromosoma + str(random.randint(0,1))
 
-        frame.insert(INSERT, temp_cromosoma)
-        frame.insert(INSERT, "\n")
+        render.insert(INSERT, f"{x + 1} : {temp_cromosoma} Fitness: {cromosoma.getFitness(temp_cromosoma)}")
+        render.insert(INSERT, "\n")
+        cromosoma.addFitness(temp_cromosoma)
+        cromosoma.addCromosoma(temp_cromosoma)
+
