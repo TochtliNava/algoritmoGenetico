@@ -1,6 +1,7 @@
 from tkinter import *
 
 from res.values import colors
+from modules.log import log
 from modules.cromosoma import cromosoma
 from modules.functions import generate, draw
 
@@ -47,6 +48,7 @@ class Engine:
             self.button_breed["state"] = "active"
 
     def step(self, function):
+        log.clear()
         function()
         self.check()
         

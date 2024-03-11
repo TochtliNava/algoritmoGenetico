@@ -1,8 +1,11 @@
+from modules.log import log
+
 class Cromosoma:
 
     def __init__(self):
         self.cromosomas = []
         self.fitness = []
+        self.tag = []
         self.length = 0
 
     def setLength(self, l):
@@ -16,6 +19,12 @@ class Cromosoma:
 
     def clearFitness(self):
         self.fitness.clear()
+    
+    def clearTag(self):
+        self.tag.clear()
+
+    def addTag(self, t):
+        self.tag.append(t)
 
     def addFitness(self, f):
         self.fitness.append(self.getFitness(f))
@@ -49,6 +58,8 @@ class Cromosoma:
         self.clearFitness()
         
         for i in range(self.getSize()):
+            log.write(f"Se mutó el cromosoma {self.tag[i]} : su codigo es \"{self.tag[i]}M\"")
+            self.tag[i] = self.tag[i] + "M"
             temp_cromosoma = ""
             for u in range(len(self.cromosomas[i])):
                 if(self.cromosomas[i][u] == "1"):
@@ -63,5 +74,10 @@ class Cromosoma:
             temp = self.cromosomas[i][int((self.getLength()//2)):]
             self.cromosomas[i] = self.cromosomas[i][:int(self.getLength()//2)] + self.cromosomas[(i + int(self.getSize()//2))][int(self.getLength()//2):]
             self.cromosomas[int(i + (self.getSize()//2))] = self.cromosomas[int(i + (self.getSize()//2))][:int((self.getLength()//2))] + temp
+            log.write(f"{self.tag[i]} se cruzó con {self.tag[i + self.getSize()//2]} : su codigo es \"{self.tag[i] + self.tag[i + self.getSize()//2]}\"")
+            log.write(f"{self.tag[i + self.getSize()//2]} se cruzó con {self.tag[i]} : su codigo es \"{self.tag[i + self.getSize()//2] + self.tag[i]}\"")
+            temp_tag = self.tag[i]
+            self.tag[i] = self.tag[i] + self.tag[i + self.getSize()//2]
+            self.tag[i + self.getSize()//2] = self.tag[i + self.getSize()//2] + temp_tag
 
 cromosoma = Cromosoma()

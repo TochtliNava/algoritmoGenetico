@@ -3,6 +3,7 @@ from tkinter import scrolledtext
 
 from modules.capture import Capture
 from modules.engine import Engine
+from modules.log import log
 from res.values import colors
 
 root = Tk()
@@ -61,10 +62,33 @@ buttons_frame = Frame(left_top_button, bg=colors.WHITE)
 buttons_frame.pack(side=TOP, fill=BOTH, expand=True)
 buttons_frame.pack_propagate(False)
 
-# --------Filler Frame----------------
+# --------Log Frame----------------
 
-left_top_blank = Frame(left_frame, bg=colors.BACKGROUND)
-left_top_blank.pack(side=TOP, fill=BOTH, expand=True)
+left_top_log = Frame(left_frame, bg=colors.WHITE)
+left_top_log.pack(side=TOP, fill=BOTH, expand=True)
+left_top_log.pack_propagate(False)
+
+log_top = Frame(left_top_log, bg=colors.LIGHT, height=60)
+log_top.pack(side=TOP, fill=X)
+
+log_label = Label(log_top, text="Log", bg=colors.LIGHT)
+log_label.pack()
+
+hscrollbar = Scrollbar(left_top_log, orient=HORIZONTAL)
+vscrollbar = Scrollbar(left_top_log, orient=VERTICAL)
+
+log_content = Listbox(
+    left_top_log,
+    xscrollcommand=hscrollbar.set,
+    yscrollcommand=vscrollbar.set
+)
+hscrollbar.config(command=log_content.xview)
+hscrollbar.pack(side=BOTTOM, fill=X)
+vscrollbar.config(command=log_content.yview)
+vscrollbar.pack(side=RIGHT, fill=Y)
+log_content.pack(side=LEFT, fill=BOTH, expand=True)
+
+log.setContent(log_content)
 
 # ---------middle filler Frame--------------
 
