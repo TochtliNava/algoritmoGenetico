@@ -61,8 +61,6 @@ buttons_frame = Frame(left_top_button, bg=colors.WHITE)
 buttons_frame.pack(side=TOP, fill=BOTH, expand=True)
 buttons_frame.pack_propagate(False)
 
-
-
 # --------Filler Frame----------------
 
 left_top_blank = Frame(left_frame, bg=colors.BACKGROUND)
@@ -91,7 +89,20 @@ lower_frame = Frame(right_frame, bg="blue")
 lower_frame.pack(side=TOP, fill=BOTH, expand=True)
 lower_frame.pack_propagate(False)
 
-cromosoma = scrolledtext.ScrolledText(lower_frame, width=53)
+# -------------------Cromosomas frame con scroll---------------
+
+hscrollbar = Scrollbar(lower_frame, orient=HORIZONTAL)
+vscrollbar = Scrollbar(lower_frame, orient=VERTICAL)
+
+cromosoma = Listbox(
+    lower_frame,
+    xscrollcommand=hscrollbar.set,
+    yscrollcommand=vscrollbar.set
+)
+hscrollbar.config(command=cromosoma.xview)
+hscrollbar.pack(side=BOTTOM, fill=X)
+vscrollbar.config(command=cromosoma.yview)
+vscrollbar.pack(side=RIGHT, fill=Y)
 cromosoma.pack(side=LEFT, fill=BOTH, expand=True)
 
 engine = Engine(buttons_frame)

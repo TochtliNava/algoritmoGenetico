@@ -57,6 +57,11 @@ class Cromosoma:
                     temp_cromosoma = temp_cromosoma + "1"
             self.cromosomas[i] = temp_cromosoma
             self.addFitness(self.cromosomas[i])
-
+    
+    def breed(self):
+        for i in range(int(self.getSize()//2)):
+            temp = self.cromosomas[i][int((self.getLength()//2)):]
+            self.cromosomas[i] = self.cromosomas[i][:int(self.getLength()//2)] + self.cromosomas[(i + int(self.getSize()//2))][int(self.getLength()//2):]
+            self.cromosomas[int(i + (self.getSize()//2))] = self.cromosomas[int(i + (self.getSize()//2))][:int((self.getLength()//2))] + temp
 
 cromosoma = Cromosoma()

@@ -14,7 +14,7 @@ class Engine:
         self.button_start = Button(self.upper_row, text="Generar", font=("Arial", 12), command=lambda:self.step(lambda:self.start()))
         self.button_start.pack(side=LEFT, expand=True, padx=2)
 
-        self.button_breed = Button(self.upper_row, text="Cruce", font=("Arial", 12))
+        self.button_breed = Button(self.upper_row, text="Cruce", font=("Arial", 12), command=lambda:self.step(lambda:self.breeding()))
         self.button_breed.pack(side=LEFT, expand=True, padx=2)
 
         self.button_mutation = Button(self.upper_row, text="Mutacion", font=("Arial", 12), command=lambda:self.step(lambda:self.mutation()))
@@ -40,16 +40,23 @@ class Engine:
     def setCapture(self, capture):
         self.capture = capture
 
-    def step(self, function):
-        function()
-        if(cromosoma.getLength()%2 == 1):
+    def check(self):
+        if(cromosoma.getLength()%2 == 1 or cromosoma.getSize()%2 == 1):
             self.button_breed["state"] = "disable"
-        if(cromosoma.getLength()%2 == 0):
+        if(cromosoma.getLength()%2 == 0 and cromosoma.getSize()%2 == 0):
             self.button_breed["state"] = "active"
 
+    def step(self, function):
+        function()
+        self.check()
+        
     def start(self):
         generate(self.frame, self.capture)
 
     def mutation(self):
         cromosoma.mutate()
+        draw(self.frame)
+
+    def breeding(self):
+        cromosoma.breed()
         draw(self.frame)
