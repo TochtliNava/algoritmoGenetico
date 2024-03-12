@@ -1,4 +1,5 @@
 from modules.log import log
+import random
 
 class Cromosoma:
 
@@ -7,10 +8,17 @@ class Cromosoma:
         self.fitness = []
         self.tag = []
         self.length = 0
+        self.gen = 1
 
     def setLength(self, l):
         self.length = l
     
+    def resetGen(self):
+        self.gen = 1
+    
+    def setGen(self, g):
+        self.gen = g
+
     def getLength(self):
         return self.length
     
@@ -53,6 +61,18 @@ class Cromosoma:
     
     def __str__(self) -> str:
         return f"{self.cromosomas}"
+    
+    def getBest(self):
+        return max(self.fitness)
+    
+    def select(self, s):
+        temp = []
+        for _ in range(s):
+            i = random.randint(0,self.getSize() - 1)
+            temp.append(self.cromosomas[i])
+            log.write(f"Se salvó el cromosoma {self.tag[i]}")
+            self.cromosomas.pop(i)
+        self.cromosomas = temp
 
     def mutate(self):
         self.clearFitness()

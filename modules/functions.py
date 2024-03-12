@@ -8,6 +8,7 @@ def generate(content, capture):
     cromosoma.clearCromosomas()
     cromosoma.clearFitness()
     cromosoma.clearTag()
+    cromosoma.resetGen()
     cromosoma.setLength(capture.getSize())
 
     content.delete(0, END)
@@ -24,9 +25,27 @@ def generate(content, capture):
 
 def draw(content):
 
+    cromosoma.clearFitness()
     content.delete(0, END)
 
     for c in range(cromosoma.getSize()):
         content.insert(END, f"{cromosoma.tag[c]} : {cromosoma.cromosomas[c]} Fitness: {cromosoma.getFitness(cromosoma.cromosomas[c])}")
         content.insert(END, "\n")
+        cromosoma.addFitness(cromosoma.cromosomas[c])
 
+def select():
+
+    def s(n):
+        s = int(n.get())
+        n.winfo_toplevel().destroy()
+        cromosoma.select(s)
+
+    select = Toplevel()
+    n_frame = LabelFrame(select, text="Cuantos cromosomas serán seleccionados?")
+    n_frame.pack()
+    n = Entry(n_frame)
+    n.focus()
+    n.pack(side=LEFT, fill=X, expand=True)
+    b = Button(n_frame, text="OK", command=lambda:s(n))
+    b.pack(side=LEFT)
+    select.wait_window()
