@@ -93,6 +93,7 @@ class Engine:
         else:
             cromosoma.setGen(cromosoma.gen + 1)
             log.write(f"Generación {cromosoma.gen}")
+            self.check()
     
     def stop(self):
         self.button_mutation["state"] = "disable"

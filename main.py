@@ -89,6 +89,9 @@ vscrollbar.pack(side=RIGHT, fill=Y)
 log_content.pack(side=LEFT, fill=BOTH, expand=True)
 
 log.setContent(log_content)
+log.write("Creado por:")
+log.write("Ezequiel Alejandro Nava Alonso (TochtliNava)!")
+log.write("(●'◡'●)")
 
 # ---------middle filler Frame--------------
 
